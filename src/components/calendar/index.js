@@ -24,7 +24,7 @@ class Calendar extends Component {
     const query = new URLSearchParams(this.props.location.search);
 
     const date = query.get('date');
-    const dateObj = date ? moment(date, "x") : null;
+    const dateObj = date ? moment(date, "x") : moment();
 
     this.setState({month: dateObj, selected: dateObj.startOf('day')});
   }
