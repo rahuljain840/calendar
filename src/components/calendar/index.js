@@ -55,7 +55,7 @@ class Calendar extends Component {
       month: day.date.clone(),
     }, () => {
       this.props.history.push({
-        pathname: '/',
+        pathname: '/calendar',
         search: `?date=${this.state.selected}`
       });
 
