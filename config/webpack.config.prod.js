@@ -10,6 +10,7 @@ var paths = require('./paths');
 var getClientEnvironment = require('./env');
 
 
+
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
 var publicPath = paths.servedPath;
@@ -38,7 +39,7 @@ const cssFilename = 'static/css/[name].[contenthash:8].css';
 // To have this structure working with relative paths, we have to use custom options.
 const extractTextPluginOptions = shouldUseRelativeAssetPaths
   // Making sure that the publicPath goes back to to build folder.
-  ? {publicPath: Array(cssFilename.split('/').length).join('../')}
+  ? { publicPath: Array(cssFilename.split('/').length).join('../') }
   : undefined;
 
 // This is the production configuration.
@@ -138,20 +139,12 @@ module.exports = {
       // use the "style" loader inside the async code so CSS from them won't be
       // in the main CSS file.
       {
-        test: /\.(?:le|c)ss$/,
-        use: [
-          {
-            loader: ExtractTextPlugin.extract(
-              'style',
-              'css?importLoaders=1!postcss',
-              extractTextPluginOptions
-            )
-          }, {
-            loader: require.resolve('less-loader'),
-            options: {
-              importLoaders: 1,
-            },
-          }]
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract(
+          'style',
+          'css?importLoaders=1!postcss',
+          extractTextPluginOptions
+        )
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
       },
       // JSON is not enabled by default in Webpack but both Node and Browserify
@@ -174,7 +167,7 @@ module.exports = {
   },
 
   // We use PostCSS for autoprefixing only.
-  postcss: function () {
+  postcss: function() {
     return [
       autoprefixer({
         browsers: [
