@@ -11,7 +11,7 @@ export default function Routes() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={App}>
+        <Route exact path="/calendar" component={App}>
         </Route>
       </Switch>
     </Router>
